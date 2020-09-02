@@ -7,17 +7,13 @@ ENV APPS_ROOT=/usr/local
 ENV HIVE_HOME=${APPS_ROOT}/apache-hive-${HIVE_VERSION}-bin
 ENV HADOOP_HOME=${APPS_ROOT}/hadoop-${HADOOP_VERSION}
 
-# TODO Remove these two lines and add in the wget below
-COPY hadoop-${HADOOP_VERSION}.tar.gz /
-COPY apache-hive-${HIVE_VERSION}-bin.tar.gz /
-
 RUN apt-get update && apt-get install -y \
     ssh \
     pdsh && \
-    #wget http://apache.mirrors.spacedump.net/hadoop/common/hadoop-3.3.0/hadoop-${HADOOP_VERSION}.tar.gz && \
+    wget http://apache.mirrors.spacedump.net/hadoop/common/hadoop-3.3.0/hadoop-${HADOOP_VERSION}.tar.gz && \
     tar -xzvf hadoop-${HADOOP_VERSION}.tar.gz -C $APPS_ROOT/ && \
     rm hadoop-${HADOOP_VERSION}.tar.gz && \
-    #wget http://apache.mirrors.spacedump.net/hive/hive-3.1.2/apache-hive-${HIVE_VERSION}-bin.tar.gz && \
+    wget http://apache.mirrors.spacedump.net/hive/hive-3.1.2/apache-hive-${HIVE_VERSION}-bin.tar.gz && \
     tar -xzvf apache-hive-${HIVE_VERSION}-bin.tar.gz -C $APPS_ROOT/ && \
     rm apache-hive-${HIVE_VERSION}-bin.tar.gz
 

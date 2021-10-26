@@ -29,3 +29,5 @@ RUN rm $HIVE_HOME/lib/guava-*.jar
 RUN cp $HADOOP_HOME/share/hadoop/hdfs/lib/guava-*.jar $HIVE_HOME/lib/
 
 RUN schematool -dbType derby -initSchema
+
+CMD ["beeline", "-u", "jdbc:hive2://", "-n", "$USER", "--color"]
